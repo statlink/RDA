@@ -1,4 +1,4 @@
-Package: RDA
+Package: regda
 Type: Package
 Title: Regularised Discriminant Analysis
 Version: 1.0

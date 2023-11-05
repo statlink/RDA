@@ -1,5 +1,5 @@
-\name{RDA-package}
-\alias{RDA-package}
+\name{regda-package}
+\alias{regda-package}
 \docType{package}
 \title{
 Regularised Discriminant Analysis
@@ -11,7 +11,7 @@ Description: Regularised discriminant analysis functions. The classical regulari
 
 \details{
 \tabular{ll}{
-Package: \tab RDA\cr
+Package: \tab regda\cr
 Type: \tab Package\cr
 Version: \tab 1.0 \cr
 Date: \tab 2023-11-05\cr

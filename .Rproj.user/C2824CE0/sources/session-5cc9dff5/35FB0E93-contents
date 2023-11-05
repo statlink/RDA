@@ -1,9 +1,0 @@
-#useDynLib(pchc, .registration = TRUE)
-
-importFrom("Rfast", rowMaxs, cova, mahala, rowsums)
-importFrom("Rfast2", reg.mle.lda, regmlelda.cv, Sample.int, colGroup)
-
-exportPattern("^[[:alpha:]]+")
-exportPattern("^[^\\.]")
-
-export(cls, pls)
