@@ -1,0 +1,30 @@
+regmlelda.cv <- function(x, ina, lambda = seq(0, 1, by = 0.1), folds = NULL, nfolds = 10,
+                         stratified = TRUE, seed = FALSE, pred.ret = FALSE) {
+
+  ina <- as.numeric(ina)
+  if ( is.null(folds) ) {
+    folds <- .makefolds(ina, nfolds = nfolds, stratified = stratified, seed = seed)
+  }
+  nfolds <- length(folds)
+  crit <- matrix( nrow = nfolds, ncol = length(lambda) )
+  preds <- NULL
+  if ( pred.ret ) {
+    names <- paste("Fold", 1:nfolds)
+    preds <- sapply(names, function(x) NULL)
+  }
+
+  for (i in 1:nfolds) {
+    inatest <- ina[ folds[[ i ]] ]
+    xtest <- x[folds[[ i ]], ]
+    inatrain <- ina[ - folds[[ i ]] ]
+    xtrain <- x[ - folds[[ i ]], ]
+    if (pred.ret) {
+      preds[[ i ]] <- Rfast2::reg.mle.lda(xtest, xtrain, inatrain, lambda = lambda)
+      be <- preds[[ i ]] -  inatest  ## afaireis apo kath sthlh to ytes
+    } else  be <- Rfast2::reg.mle.lda(xtest, xtrain, inatrain, lambda = lambda) - inatest
+    crit[i, ] <- Rfast::colmeans( be == 0 )  ## pososto swstn se tkathe sthlh
+  }
+
+  if ( !pred.ret )  preds <- NULL
+  list( preds = preds, crit = Rfast::colmeans(crit) )
+}

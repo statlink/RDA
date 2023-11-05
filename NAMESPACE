@@ -1,0 +1,14 @@
+#useDynLib(pchc, .registration = TRUE)
+
+importFrom("Rfast", rowMaxs, cova, mahala, rowsums)
+importFrom("Rfast2", reg.mle.lda, regmlelda.cv, Sample.int, colGroup)
+importFrom("stats", sd)
+
+import("doParallel")
+import("parallel")
+import("foreach")
+
+exportPattern("^[[:alpha:]]+")
+exportPattern("^[^\\.]")
+
+export(rda, rda.tune, reg.mle.lda, regmlelda.cv)
